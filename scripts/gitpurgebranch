@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+        echo Git Local Branch Purge.
+        echo
+        echo You must supply a partial branch name
+        echo usage: gitpurgebranch xxx 
+        echo
+        echo will grep branches and will delete xxxx-123, 123-xxx, 123xxx123, etc.
+        echo
+    exit 1
+fi
+
+name=$1
+
+echo -n "Delete ALL branches that contain $name in their names? (y/N)? "
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+    echo Ok, bye bye branches…
+    git branch | grep $name | xargs git branch -D
+else
+    echo Ok, bye, nothing removed, but these branches would have matched: 
+    git branch | grep $name
+fi
+

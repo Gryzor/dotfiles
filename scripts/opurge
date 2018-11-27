@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo -n "DELETE all LOCAL branches except master, develop and current(*) ? (y/N)? "
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+    echo Ok, I hope you had a backup…
+    git branch | egrep -v "(master|develop|\*)" | xargs git branch -D
+else
+    echo Ok, bye.
+fi
+
+
+
+

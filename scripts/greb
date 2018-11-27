@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+	echo Git Update/Rebase with Branch. 
+	echo 
+	echo You must supply a branch name to rebase to…
+	echo
+	echo usage: greb name_of_parent_branch
+	echo
+    exit 1
+fi
+
+name=$1
+
+echo $name
+
+git co $name ; git pull ; git co - 
+
+echo -n "Perform REBASE $name onto this branch? (y/N)? "
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+    echo Rebasing…
+    git rebase $name
+else
+    echo Ok, bye.
+fi
+

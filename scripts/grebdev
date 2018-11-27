@@ -1,0 +1,21 @@
+#!/bin/bash
+
+name=develop
+
+echo $name
+
+git co $name ; git pull ; git pull ; git co - 
+
+#### ; git rebase $name
+
+echo -n "Perform REBASE $name onto this branch? (y/N)? "
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+    echo Rebasing…
+    git rebase $name
+else
+    echo Ok, bye. 
+fi
+
+
+

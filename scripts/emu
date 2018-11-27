@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+	echo You must supply an AVD name to start
+	echo
+	echo Existing avds as shown by running emulator -list-avds:
+	echo
+        ~/Develop/SDK/android-sdk-macosx/emulator/emulator -list-avds
+    exit 1
+fi
+
+name=$1
+
+echo Attempting to start: $name
+
+~/Develop/SDK/android-sdk-macosx/emulator/emulator -avd $name & 

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+	echo Easy Branch Creator
+	echo 
+	echo You must supply a partial name
+        echo
+    exit 1
+fi
+
+prefix="martin-"
+name=$1
+develop="develop"
+branch=$prefix$name
+
+echo Updating $develop before creating new branch…
+git co $develop ; git pull  
+
+echo Creating branch $branch
+
+git co -b $branch
+
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sudo networksetup -setdnsservers 'Wi-Fi' 10.4.104.30 10.4.104.31 8.8.8.8
+
+echo -n 8GwaiBoBH^QLZDcHYMaVpVQs | sudo openconnect bamssl.mlb.com --no-dtls --user=martin.marconcini
+
+sudo networksetup -setdnsservers 'Wi-Fi' 192.168.1.1 8.8.8.8
+
+#networksetup -getdnsservers 'Display Ethernet'
+

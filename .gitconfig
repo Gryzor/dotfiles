@@ -1,0 +1,48 @@
+[user]
+        name = Martin Marconcini
+        email = marconcini@gmail.com
+[core]
+        quotepath = false
+        excludesfile = /Users/martin/.gitignore
+[mergetool]
+        keepBackup = false
+        prompt = false
+[difftool "sourcetree"]
+        cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+        path =
+[mergetool "sourcetree"]
+        cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+        trustExitCode = true
+[difftool "Kaleidoscope"]
+        cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+        tool = Kaleidoscope
+[difftool]
+        prompt = false
+[mergetool "Kaleidoscope"]
+        cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+        trustExitCode = true
+[merge]
+        tool = Kaleidoscope
+[push]
+        default = current
+
+[alias]
+  tagcommit = !sh -c 'git rev-list $0 | head -n 1'
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+        st = status
+        br = branch
+        df = diff
+        co = checkout
+        p = pull
+        dff = difftool HEAD
+        hide = update-index --assume-unchanged
+        unhide = update-index --no-assume-unchanged
+        hidden = !sh -c 'git ls-files -v|grep "^h"'
+        sync = !sh -c 'git checkout --quiet HEAD && git fetch origin develop:develop && git checkout --quiet - '
+	mst = stash save -u --keep-index
+[color]
+        ui = auto
+[rerere]
+        enabled = 1
+        autoupdate = true
