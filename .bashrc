@@ -24,6 +24,7 @@ alias gdev='git checkout develop'
 alias magicStash='git stash save -u --keep-index'
 alias deleteAllLocal='git branch | egrep -v "(master|develop|\*)" | xargs git branch -D'
 
+alias gsubmodule='git submodule update --recursive'
 # Generic Alias
 alias ll="ls -al"
 
