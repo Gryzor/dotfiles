@@ -1,29 +1,33 @@
 [user]
-        name = Martin Marconcini
-        email = marconcini@gmail.com
+    name = Martin Marconcini
+    email = marconcini@gmail.com
 [core]
-        quotepath = false
-        excludesfile = /Users/martin/.gitignore
+    quotepath = false
+    excludesfile = /Users/martin/.gitignore
+    editor = vim
+
 [mergetool]
-        keepBackup = false
-        prompt = false
-[difftool "sourcetree"]
-        cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-        path =
-[mergetool "sourcetree"]
-        cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-        trustExitCode = true
-[difftool "Kaleidoscope"]
-        cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[diff]
-        tool = Kaleidoscope
+    keepBackup = false
+    prompt = false
+
+### Set up Meld for Diff Display (Linux)
 [difftool]
-        prompt = false
-[mergetool "Kaleidoscope"]
-        cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-        trustExitCode = true
+    prompt = false
+
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
+
+[diff]
+    tool = meld
+
+### Set up Meld for Merge Conflict Resolution (Linux)
+[mergetool "meld"]
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    #cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+
 [merge]
-        tool = Kaleidoscope
+    tool = meld
+
 [push]
         default = current
 
@@ -39,7 +43,7 @@
         hide = update-index --assume-unchanged
         unhide = update-index --no-assume-unchanged
         hidden = !sh -c 'git ls-files -v|grep "^h"'
-        sync = !sh -c 'git checkout --quiet HEAD && git fetch origin develop:develop && git checkout --quiet - '
+        #sync = !sh -c 'git checkout --quiet HEAD && git fetch origin develop:develop && git checkout --quiet - '
 	mst = stash save -u --keep-index
 [color]
         ui = auto
