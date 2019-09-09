@@ -45,6 +45,7 @@
         hidden = !sh -c 'git ls-files -v|grep "^h"'
         #sync = !sh -c 'git checkout --quiet HEAD && git fetch origin develop:develop && git checkout --quiet - '
 	mst = stash save -u --keep-index
+        history = lg --abbrev-commit --follow -p --
 [color]
         ui = auto
 [rerere]
