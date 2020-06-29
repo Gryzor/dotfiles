@@ -1,0 +1,7 @@
+(*) Unstaged
+(+) Staged
+($) Stashed
+(%) Untracked Files
+(<) Behind upstream
+(>) Ahead upstream
+(<>) Diverged from upstream
